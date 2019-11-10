@@ -6,7 +6,7 @@
 #    By: lminta <lminta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/02 20:58:32 by lminta            #+#    #+#              #
-#    Updated: 2019/10/21 20:25:54 by lminta           ###   ########.fr        #
+#    Updated: 2019/11/10 17:38:12 by lminta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ $(NAME): $(OBJ)
 	make -C mlx_graph
 	make -C Get_Next_Line
 	make -C Fill_it
-	gcc $(OBJ) -L $(LIBS) $(FLAGS2) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+	make -C minilibx_macos
+	gcc $(OBJ) -L $(LIBS) $(FLAGS2) -I minilibx_macos -L minilibx_macos -lmlx -framework OpenGL -framework Appkit -o $(NAME)
 
 $(LIBS):
 	mkdir lib
@@ -43,6 +44,7 @@ clean:
 	make -C mlx_graph clean
 	make -C Get_Next_Line clean
 	make -C Fill_it clean
+	make -C minilibx_macos clean
 	rm -f $(OBJ)
 
 fclean: clean
